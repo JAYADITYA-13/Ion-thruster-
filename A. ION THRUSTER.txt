@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ION THRUSTER PROJECT - JAYADITYA</title>
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #121420;
+            --accent-glow: #00d2ff;
+            --accent-blue: #0066ff;
+            --text-main: #ffffff;
+            --text-muted: #b3b8d2;
+            --border-color: #1f233a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .exhibition-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-glow);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .meta-item strong {
+            color: var(--accent-glow);
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .meta-item span {
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--accent-glow);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        ul li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: var(--accent-glow);
+        }
+
+        .thruster-diagram {
+            width: 100%;
+            height: 150px;
+            border: 1px dashed var(--accent-blue);
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 102, 255, 0.05);
+            color: var(--accent-glow);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .bookmark {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 40px;
+            color: var(--accent-glow);
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .bookmark-line {
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 0 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="exhibition-title">53મી રાજ્ય કક્ષાની વિજ્ઞાન, ગણિત અને પર્યાવરણ પ્રદર્શન બુકલેટ</div>
+            <h1>આયન થ્રસ્ટર ટેક્નોલોજી (Ion Thruster)</h1>
+            
+            <div class="meta-info">
+                <div class="meta-item">
+                    <strong>શાળાનું નામ</strong>
+                    <span>પીએમ શ્રી રામલેચી પ્રાથમિક શાળા, ગિરમાંડવી (ગીર સોમનાથ)</span>
+                </div>
+                <div class="meta-item">
+                    <strong>સંશોધક વિદ્યાર્થીઓ</strong>
+                    <span>અપર્ણાથી જયદિત્ય કેતનગીરી અને યાજ્ઞિક</span>
+                </div>
+                <div class="meta-item">
+                    <strong>માર્ગદર્શક શિક્ષક</strong>
+                    <span>કાવડ નરેશભાઈ</span>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <h2>૧. પ્રસ્તાવના (Introduction)</h2>
+            <p>આયન થ્રસ્ટર એ ભવિષ્યના અંતરિક્ષ વિજ્ઞાન અને સેટેલાઇટ પ્રોપલ્શન (Propulsion) માટેની એક અત્યંત આધુનિક સિસ્ટમ છે. પરંપરાગત કેમિકલ રોકેટની સરખામણીમાં આ ટેક્નોલોજી ખૂબ જ ઓછા બળતણનો ઉપયોગ કરીને સ્પેસક્રાફ્ટને લાંબા સમય સુધી ગતિશીલ રાખી શકે છે. આ પ્રોજેક્ટ ઇલેક્ટ્રિકલ એનર્જી અને આયનાઇઝેશન પ્રક્રિયા પર આધારિત છે.</p>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>૨. જરૂરી સાધનો (Components Required)</h2>
+            <ul>
+                <li><strong>હાઇ-વોલ્ટેજ પાવર સોર્સ:</strong> આયનો ઉત્પન્ન કરવા અને તેને વેગ આપવા માટે જરૂરી ઉચ્ચ વિદ્યુતપ્રવાહ.</li>
+                <li><strong>પ્રોપેલન્ટ ગેસ (જેનોન અથવા આર્ગોન):</strong> જે ગેસના પરમાણુઓનું આયનાઇઝેશન કરવાનું છે.</li>
+                <li><strong>કેથોડ અને એનોડ ગ્રીડ:</strong> ઇલેક્ટ્રોન મુક્ત કરવા અને આયનોને આકર્ષિત કરીને બહાર ધકેલવા માટે.</li>
+                <li><strong>કંટ્રોલ યુનિટ (Arduino/ESP32 સિસ્ટમ):</strong> પાવર સપ્લાય અને આયન ફ્લોનું ચોક્કસ મોનિટરિંગ કરવા માટે.</li>
+            </ul>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>૩. કાર્યપદ્ધતિ (Working Principle)</h2>
+            <p>આયન થ્રસ્ટરના મુખ્ય ત્રણ તબક્કા છે: પ્રથમ, પ્રોપેલન્ટ ગેસના પરમાણુઓ પર ઇલેક્ટ્રોનનો મારો ચલાવીને તેમને પોઝિટિવ આયનોમાં રૂપાંતરિત કરવામાં આવે છે (Ionization). બીજા તબક્કામાં, આ પોઝિટિવ આયનોને ખૂબ જ શક્તિશાળી ઇલેક્ટ્રિક ગ્રીડ દ્વારા આકર્ષિત કરીને પ્રવેગિત (Accelerate) કરવામાં આવે છે. અંતે, આ હાઇ-સ્પીડ આયનો થ્રસ્ટરની પાછળના ભાગમાંથી અતિ તીવ્ર ગતિએ બહાર નીકળે છે, જે ન્યૂટનના ગતિના ત્રીજા નિયમ (આઘાત અને પ્રત્યાઘાત) મુજબ સ્પેસક્રાફ્ટને આગળ તરફ ધકેલે છે.</p>
+            
+            <div class="thruster-diagram">
+                [ + IONIZATION CHAMBER + ] ====> ( ACCELERATED IONS EMISSION ) ⚡
+            </div>
+            
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>૪. ટેક્નોલોજીના ફાયદા (Advantages)</h2>
+            <ul>
+                <li><strong>ઉચ્ચ કાર્યક્ષમતા (High Efficiency):</strong> રાસાયણિક રોકેટો કરતા આ સિસ્ટમ દસ ગણી વધુ ઇંધણ ક્ષમતા ધરાવે છે.</li>
+                <li><strong>લાંબો જીવનકાળ:</strong> ઊંડા અંતરિક્ષના મિશનો (Deep Space Missions) અને સેટેલાઇટને વર્ષો સુધી પોતાની ભ્રમણકક્ષામાં ટકાવી રાખવા માટે આ શ્રેષ્ઠ છે.</li>
+                <li><strong>સતત પ્રવેગ (Continuous Acceleration):</strong> તે લાંબા સમય સુધી સતત બળ પૂરું પાડી શકે છે, જેનાથી સ્પેસક્રાફ્ટ અંતરિક્ષમાં અસાધારણ ઝડપ પકડી શકે છે.</li>
+            </ul>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

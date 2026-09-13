@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROPULSION RESEARCH SYSTEMS - JAYADITYA</title>
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #121420;
+            --accent-glow: #00d2ff;
+            --accent-blue: #0066ff;
+            --text-main: #ffffff;
+            --text-muted: #b3b8d2;
+            --border-color: #1f233a;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* --- SLIDING SIDEBAR SYSTEM --- */
+        .sidebar-trigger {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 100vh;
+            z-index: 1001;
+            background: transparent;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: calc(-1 * var(--sidebar-width));
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: #0d0f1b;
+            border-right: 2px solid var(--accent-blue);
+            box-shadow: 5px 0 30px rgba(0, 210, 255, 0.15);
+            z-index: 1000;
+            transition: left 0.4s cubic-bezier(0.05, 0.74, 0.2, 1);
+            padding: 30px 20px;
+        }
+
+        /* Hover on trigger or sidebar itself to slide out */
+        .sidebar-trigger:hover + .sidebar, .sidebar:hover {
+            left: 0;
+        }
+
+        .sidebar-brand {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-glow);
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .menu-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            letter-spacing: 1.5px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .sidebar-menu li a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-menu li a:hover {
+            background: rgba(0, 210, 255, 0.05);
+            color: var(--accent-glow);
+            border-left-color: var(--accent-glow);
+            padding-left: 20px;
+        }
+
+        .hint-bar {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(18, 20, 32, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--accent-glow);
+            z-index: 999;
+            pointer-events: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.15);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+        }
+
+        .exhibition-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-glow);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .meta-item strong {
+            color: var(--accent-glow);
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .meta-item span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+            letter-spacing: 2px;
+        }
+
+        /* --- SYSTEM MAIN HEADINGS --- */
+        .system-separator {
+            text-align: center;
+            margin: 60px 0;
+            padding: 20px;
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.1), transparent);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .system-title {
+            font-size: 2rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+        }
+
+        section {
+            margin-bottom: 45px;
+            scroll-margin-top: 40px; /* Offset for scrolling smoothly */
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--accent-glow);
+            margin-bottom: 18px;
+            border-left: 5px solid var(--accent-blue);
+            padding-left: 15px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin: 20px 0 10px 0;
+            padding-left: 5px;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            text-align: justify;
+            text-indent: 30px;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 20px;
+            padding-left: 10px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        ul li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: var(--accent-glow);
+        }
+
+        .diagram-box {
+            width: 100%;
+            border: 1px dashed var(--accent-blue);
+            border-radius: 8px;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 102, 255, 0.02);
+            color: var(--accent-glow);
+            font-weight: bold;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .bookmark {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 35px;
+            color: var(--accent-glow);
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .bookmark-line {
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 0 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-trigger"></div>
+
+    <nav class="sidebar">
+        <div class="sidebar-brand">JAYADITYA</div>
+        <ul class="sidebar-menu">
+            <div class="menu-category">SYSTEM 1: ION THRUSTER</div>
+            <li><a href="#ion-intro">૧. પ્રસ્તાવના</a></li>
+            <li><a href="#ion-comp">૨. મુખ્ય ઘટકો</a></li>
+            <li><a href="#ion-work">૩. કાર્યપદ્ધતિ</a></li>
+            <li><a href="#ion-comp-analysis">૪. તુલનાત્મક વિશ્લેષણ</a></li>
+            <li><a href="#ion-future">૫. વૈશ્વિક મિશનો</a></li>
+
+            <div class="menu-category">SYSTEM 2: JET ENGINE</div>
+            <li><a href="#jet-architecture">૧. એન્જિન આર્કિટેક્ચર</a></li>
+            <li><a href="#jet-stages">૨. કમ્પ્રેશન અને કમ્બશન</a></li>
+            <li><a href="#jet-afterburner">૩. આફ્ટરબર્નર સિસ્ટમ</a></li>
+            <li><a href="#jet-auxiliary">૪. સબ-સિસ્ટમ્સ વિશ્લેષણ</a></li>
+        </ul>
+    </nav>
+
+    <div class="hint-bar">⬅ Slide Left-To-Right For Menu</div>
+
+    <div class="container">
+        <header>
+            <div class="exhibition-title">ADVANCED AEROSPACE & SPACE PROPULSION RESEARCH SYSTEM</div>
+            <h1>એરોસ્પેસ અને ઇલેક્ટ્રિક પ્રોપલ્શન થીસીસ</h1>
+            
+            <div class="meta-info">
+                <div class="meta-item">
+                    <strong>RESEARCHER PROFILE</strong>
+                    <span>JAYADITYA</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="system-separator" id="ion-thruster-system">
+            <div class="system-title">SYSTEM 01: GRIdDED ION THRUSTER TECH</div>
+        </div>
+
+        <section id="ion-intro">
+            <h2>૧. પ્રસ્તાવના અને વૈજ્ઞાનિક પૃષ્ઠભૂમિ (Introduction & Background)</h2>
+            <p>બ્રહ્માંડના ઊંડા રહસ્યોને શોધવા માટે પરંપરાગત કેમિકલ રોકેટ પ્રોપલ્શન સિસ્ટમ્સ પોતાની મર્યાદાઓ સુધી પહોંચી ગઈ છે. કેમિકલ રોકેટોમાં બળતણનું વજન ખૂબ વધારે હોય છે અને તેનો વેગ મર્યાદિત હોય છે. આ સમસ્યાના કાયમી ઉકેલ તરીકે "ઇલેક્ટ્રિક પ્રોપલ્શન" એટલે કે આયન થ્રસ્ટર (Ion Thruster) ટેક્નોલોજીનો ઉદય થયો છે.</p>
+            <p>આયન થ્રસ્ટર એ કોઈ સામાન્ય એન્જિન નથી, પરંતુ એક અત્યંત જટિલ ઇલેક્ટ્રો-મેગ્નેટિક સિસ્ટમ છે. આ સિસ્ટમ ન્યૂટનના ગતિના ત્રીજા નિયમ 'આઘાત અને પ્રત્યાઘાત' પર જ કાર્ય કરે છે, પરંતુ તેમાં બળતણ તરીકે અગ્નિ અથવા વાયુના ધુમાડાને બદલે અતિ તીવ્ર ગતિ ધરાવતા ચાર્જ્ડ કણો એટલે કે 'આયનો' (Ions) નો ઉપયોગ કરવામાં આવે છે. NASA ના ડીપ સ્પેસ મિશનોમાં આ ટેક્નોલોજી ગેમ-ચેન્જર સાબિત થઈ છે.</p>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+
+        <section id="ion-comp">
+            <h2>૨. મુખ્ય પાયાના ઘટકોનું વિગતવાર વિશ્લેષણ (Core Components Architecture)</h2>
+            <p>NASA દ્વારા ડિઝાઇન કરવામાં આવતા પ્રમાણભૂત ગ્રીડેડ આયન એન્જિનમાં નીચે મુજબના મુખ્ય કમ્પોનન્ટ્સનો સમાવેશ થાય છે:</p>
+            <ul>
+                <li><strong>ડિસ્ચાર્જ ચેમ્બર (Ionization Chamber):</strong> આ એ મુખ્ય વિસ્તાર છે જ્યાં પ્રોપેલન્ટ ગેસને દાખલ કરવામાં આવે છે. આ ચેમ્બરની અંદર હાઇ-એનર્જી ઇલેક્ટ્રોન છોડવામાં આવે છે જે ગેસના પરમાણુઓ સાથે અથડાઈને પ્લાઝ્મા સ્ટેટ બનાવે છે.</li>
+                <li><strong>કેથોડ ઇજેક્ટર (Discharge Cathode):</strong> આ ઘટક સતત હાઇ-સ્પીધ ફ્રી-ઇલેક્ટ્રોન ઉત્પન્ન કરે છે. આ ઇલેક્ટ્રોન ગેસના પરમાણુઓમાંથી આઉટર-શેલના ઇલેક્ટ્રોનને બહાર કાઢી નાખે છે, જેથી પરમાણુ પોઝિટિવ આયન બને છે.</li>
+                <li><strong>ઓપ્ટિકલ ઇલેક્ટ્રોસ્ટેટિક ગ્રીડ સિસ્ટમ (Gridded System):</strong> આમાં સામાન્ય રીતે બે અથવા ત્રણ અત્યંત બારીક છિદ્રો વાળી મોલિબ્ડેનમ ગ્રીડ હોય છે. અંદરની ગ્રીડ (Screen Grid) પોઝિટિવ વોલ્ટેજ પર હોય છે અને બહારની ગ્રીડ (Accelerator Grid) નેગેટિવ વોલ્ટેજ પર હોય છે.</li>
+                <li><strong>ન્યુટ્રલાઇઝર કેથોડ (Neutralizer):</strong> બહાર નીકળતા આયનોની સાથે ઇલેક્ટ્રોન પણ છોડે છે જેથી આખો બીમ ઇલેક્ટ્રિકલી ન્યુટ્રલ (તટસ્થ) થઈ જાય અને સ્પેસક્રાફ્ટ પર કોઈ હાનિકારક નેગેટિવ ચાર્જ જમા ન થાય.</li>
+            </ul>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+
+        <section id="ion-work">
+            <h2>૩. કાર્યપદ્ધતિ અને ભૌતિક વિજ્ઞાનના સિદ્ધાંતો (Deep Technical Working Principle)</h2>
+            <p>સૌ પ્રથમ, નિષ્ક્રિય વાયુ જેમ કે જેનોન (Xenon) ને ચેમ્બરમાં છોડવામાં આવે છે. જેનોન વાયુના પરમાણુઓનું વજન વધારે હોવાથી તે ઉત્કૃષ્ટ થ્રસ્ટ આપે છે. ચેમ્બરમાં રહેલા કેથોડમાંથી નીકળતા ઇલેક્ટ્રોન આ ગેસના અણુઓ સાથે પ્રચંડ વેગે અથડાય છે. આ પ્રક્રિયાને 'ઇલેક્ટ્રોન ઇમ્પેક્ટ આયનાઇઝેશન' કહે છે, જેના કારણે ગેસમાંથી પોઝિટિવ આયન ($Xe^+$) અને મુક્ત ઇલેક્ટ્રોનનું મિશ્રણ એટલે કે 'પ્લાઝ્મા' બને છે.</p>
+            <p>આ બનેલા પોઝિટિવ આયનો ચેમ્બરના છેડે આવેલી સ્ક્રીન ગ્રીડ તરફ ગતિ કરે છે. સ્ક્રીન ગ્રીડ અને એક્સિલરેટર ગ્રીડ વચ્ચે હજારો વોલ્ટનો વિદ્યુતસ્થિતિમાનનો તફાવત સેટ કરેલો હોય છે. આ શક્તિશાળી ઇલેક્ટ્રિક ફિલ્ડના કારણે પોઝિટિવ આયનો અસાધારણ બળ સાથે બહારની તરફ ખેંચાય છે. આ પ્રક્રિયામાં આયનોની ઝડપ 30 થી 50 કિલોમીટર પ્રતિ સેકન્ડ સુધી પહોંચી જાય છે.</p>
+
+            <div class="diagram-box">
+[ Xenon Gas Injection ] -> ( Hollow Cathode Electron Impact ) -> [ Plasma Generated ]
+⚡ [Screen Grid (+1500V DC)] >>>>>>>>>>>>>>>>>>>>>>>>> [Accelerator Grid (-300V DC)] ⚡
+=====================> HIGH-VELOCITY EXHAUST BEAM EMISSION =====================></div>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+
+        <section id="ion-comp-analysis">
+            <h2>૪. પરંપરાગત રોકેટ વર્સિસ આયન થ્રસ્ટર (Comparative Technical Analysis)</h2>
+            <ul>
+                <li><strong>સ્પેસિફિક ઇમ્પલ્સ ($I_{sp}$):</strong> આ એન્જિનની કાર્યક્ષમતા માપવાનો એકમ છે. સામાન્ય કેમિકલ રોકેટનું $I_{sp}$ માત્ર 300 થી 450 સેકન્ડ હોય છે, જ્યારે આયન થ્રસ્ટરનું $I_{sp}$ 3000 થી 10000 સેકન્ડ સુધીનું હોઈ શકે છે.</li>
+                <li><strong>બળતણનો વપરાશ:</strong> કેમિકલ રોકેટોમાં ટનબંધ ઇંધણ મિનિટોમાં પૂરું થઈ જાય છે. જ્યારે આયન થ્રસ્ટર માત્ર થોડાક ગ્રામ જેનોન ગેસનો ઉપયોગ કરીને દિવસો કે મહિનાઓ સુધી સતત ચાલુ રહી શકે છે.</li>
+                <li><strong>થ્રસ્ટ ફોર્સ (Thrust Output):</strong> આયન થ્રસ્ટરનું બળ ખૂબ ઓછું હોય છે, પરંતુ અંતરિક્ષમાં કોઈ ગુરુત્વાકર્ષણ કે ઘર્ષણ ન હોવાથી આ ધીમું પણ સતત મળતું બળ સ્પેસક્રાફ્ટને અંતે અસાધારણ સુપરસોનિક ગતિ આપે છે.</li>
+            </ul>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+
+        <section id="ion-future">
+            <h2>૫. વૈશ્વિક સ્પેસ મિશનો અને ભવિષ્યની સંભાવનાઓ (NASA Missions & Future Applications)</h2>
+            <p>NASA ના સુપ્રસિદ્ધ Deep Space 1 મિશનમાં પ્રથમ વખત આ એન્જિનનો પ્રાયોગિક ધોરણે ઉપયોગ કરાયો હતો. ત્યાર બાદ, NASA ના Dawn Mission માં આયન થ્રસ્ટરની મદદથી સ્પેસક્રાફ્ટે વેસ્ટા (Vesta) અને સીરીઝ (Ceres) નામના એસ્ટરોઇડ્સની સફળ યાત્રા કરી હતી. ભવિષ્યના મંગળ (Mars) અને અન્ય ગહન અંતરિક્ષ માનવ મિશનો માટે આ પ્રોપલ્શન સિસ્ટમ અનિવાર્ય અંગ છે.</p>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>ION THRUSTER</span>
+            </div>
+        </section>
+
+
+        <div class="system-separator" id="jet-engine-system">
+            <div class="system-title">SYSTEM 02: HIGH-PERFORMANCE JET ENGINE ARCHITECTURE</div>
+        </div>
+
+        <section id="jet-architecture">
+            <h2>૧. એર ઇનલેટ અને ફેન સેક્શન આર્કિટેક્ચર (Air Inlet & Fan Design)</h2>
+            <p>NASA અને એરોસ્પેસ એન્જિનિયરિંગના ધોરણો અનુસાર, આફ્ટરબર્નિંગ ટર્બોફેન એન્જિનની શરૂઆત એર ઇનલેટ પ્રોફાઇલથી થાય છે. આગળના ભાગમાં ટાઇટેનિયમ એલોયની બનેલી `Stage 1 Fan Blades` અને એરોડાયનેમિક `Nose Cone` હવાના પ્રવાહને આંતરિક સેક્શનમાં મોકલે છે.</p>
+            <p>અહીં હવા બે ભાગમાં વિભાજિત થાય છે. તેનો એક મોટો ભાગ `Bypass Duct` દ્વારા મુખ્ય એન્જિન કોરની બહારથી વહી જાય છે. આ બાયપાસ પ્રવાહ એન્જિનના આંતરિક તાપમાનને નિયંત્રિત રાખવામાં અને ઇંધણની આર્થિક બચત સાથે નીચા સ્તરે સ્થિર થ્રસ્ટ જનરેટ કરવામાં મહત્વની ભૂમિકા ભજવે છે.</p>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>JET ENGINE</span>
+            </div>
+        </section>
+
+        <section id="jet-stages">
+            <h2>૨. કમ્પ્રેશન સ્ટેજ અને કમ્બશન ડાયનામિક્સ (LPC, HPC & Combustor Physics)</h2>
+            <p>હવાના દબાણ અને ઘનતાને વધારવા માટે બે તબક્કાનું આર્કિટેક્ચર વાપરવામાં આવે છે. પ્રથમ તબક્કામાં `Low-Pressure Compressor (LPC)` ના `Stages 2-6 Blades & Vanes` હવાનું પ્રારંભિક દબાણ વધારે છે. ત્યાર બાદ, `High-Pressure Compressor (HPC)` ના `Stages 7-14 Blades` આ હવાને અતિશય સંકોચિત કરે છે, જેનાથી હવાનું તાપમાન કમ્બશન ચેમ્બરમાં પ્રવેશતા પહેલા જ તેની સર્વોચ્ચ સીમા સુધી પહોંચી જાય છે.</p>
+            <p>`Annular Burner Liner (Combustor)` માં પહોંચતા જ `Fuel Nozzles` દ્વારા એવિએશન ઇંધણનો બારીક સ્પ્રે થાય છે. `Swirlers` હવા અને ઇંધણને એકરસ કરે છે અને `Igniter Plug` દ્વારા દહન ચાલુ થાય છે. આ પ્રચંડ ગરમ વાયુઓ પાછળ રહેલા `High-Pressure Turbine (HPT)` અને `Low-Pressure Turbine (LPT)` ના બ્લેડ્સને ફેરવે છે, જે કોમ્પ્રેસર અને આગળના ફેનને ચલાવવા માટે પાવર પૂરો પાડે છે.</p>
+            
+            <div class="diagram-box">
+[Air Inlet] -> [Fan / LPC] -> [HPC (Extreme Compression)] -> [Combustion (Fuel Injected)]
+                 -> [HPT / LPT Mechanical Spin] -> [High Velocity Gas Output]</div>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>JET ENGINE</span>
+            </div>
+        </section>
+
+        <section id="jet-afterburner">
+            <h2>૩. આફ્ટરબર્નર અને વેરિયેબલ એક્ઝોસ્ટ નોઝલ સિસ્ટમ (Afterburner & Convergent-Divergent Nozzle)</h2>
+            <p>મિલિટરી ફાઇટર જેટ્સમાં ટૂંકા રનવે પરથી ટેક-ઓફ કરવા કે કોમ્બેટ મેન્યુવર્સ દરમિયાન ત્વરિત સુપરસોનિક સ્પીડ મેળવવા માટે `Afterburner (Reheat) System` નો ઉપયોગ થાય છે. ટર્બાઇનમાંથી બહાર આવતા ગેસમાં રહેલા ઓક્સિજનનો ઉપયોગ કરવા માટે `Afterburner Fuel Spray Bars` દ્વારા ફરીથી સીધું જ વધારાનું ઇંધણ છોડવામાં આવે છે. `Flame Holder` આ જ્વાળાઓને ઉચ્ચ પ્રવાહમાં પણ સ્થિર રાખે છે, જેનાથી સેકન્ડોમાં થ્રસ્ટ આઉટપુટ પ્રચંડ રીતે વધી જાય છે.</p>
+            <p>એક્ઝોસ્ટના અંતિમ છેડે `Convergent-Divergent Nozzle Flaps` અને `Variable Nozzle Actuator` આવેલા છે. આ હાઇડ્રોલિક ઓટોમેટેડ ફ્લેપ્સ આફ્ટરબર્નરની સ્થિતિ અને પ્લેનની સ્પીડ અનુસાર પોતાનો આકાર (Opening) બદલે છે, જે બહાર ફેંકાતા ગરમ વાયુઓની વેલોસિટીને ધ્વનિની ઝડપ કરતાં પણ આગળ (Supersonic Exhaust Velocity) લઈ જાય છે.</p>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>JET ENGINE</span>
+            </div>
+        </section>
+
+        <section id="jet-auxiliary">
+            <h2>૪. પૂરક પ્રણાલીઓનું ટેકનિકલ વિશ્લેષણ (Accessory Gearbox & Shaft Engineering)</h2>
+            <p>એન્જિનના સંતુલિત સંચાલન માટે હાઇ-પ્રેશર શાફ્ટ (`HP Shaft`) અને લો-પ્રેશર શાફ્ટ (`LP Shaft`) એકબીજાની અંદર કો-એક્સિયલ (Co-axial) રીતે ગોઠવાયેલા હોય છે. એન્જિનના લોઅર સેક્શનમાં `Accessory Gearbox` ફિટ કરવામાં આવેલું છે જે શાફ્ટની મિકેનિકલ ઉર્જાનો ઉપયોગ કરીને એરક્રાફ્ટના હાઇડ્રોલિક પંપ, ફ્યુઅલ ઓલ્ટરનેટર અને ઇલેક્ટ્રિકલ જનરેટર સિસ્ટમને પાવર ટ્રાન્સમિટ કરે છે. સમગ્ર એન્જિનને `Engine Mount` અને મજબૂત `Bearing Supports` દ્વારા જેટની મુખ્ય ચેસીસ સાથે સુરક્ષિત રાખવામાં આવે છે.</p>
+            <div class="bookmark">
+                <span>JAYADITYA</span>
+                <div class="bookmark-line"></div>
+                <span>JET ENGINE</span>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
